@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard | {% endblock %}
+
+{% block content %}
+<div class="ui container">
+  <h2>Welcome to Dashboard</h2>
+
+  <table class="ui compact celled definition table">
+  <thead class="full-width">
+    <tr>
+      <th></th>
+      <th>TITLE</th>
+      <th>START TIME</th>
+      <th>END TIME</th>
+      <th>DESCRIPTION</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for schedule in schedules %}
+    <tr>
+      <td class="collapsing">
+        <div class="ui fitted checkbox">
+          <input type="checkbox"> <label></label>
+        </div>
+      </td>
+      <td>{{schedule.title}}</td>
+      <td>{{schedule.start_time }}</td>
+      {% if schedule.endtime %}
+      	<td>{{ schedule.endtime }}</td>
+      {% else %}
+      	<td>-----</td>
+      {% endif %}
+      {% if schedule.description %}
+      	<td>{{ schedule.description }}</td>
+      {% else %}
+      	<td>-----</td>
+      {% endif %}
+      
+    </tr>
+    {% endfor %}
+  </tbody>
+  <tfoot class="full-width">
+    <tr>
+      <th></th>
+      <th colspan="4">
+        <div class="ui right floated small primary labeled icon button">
+          <i class="plus icon"></i> Add New Task
+        </div>
+        <div class="ui small  button">
+          Mark Complete
+        </div>
+        <div class="ui small  button">
+          Mark All Complete
+        </div>
+      </th>
+    </tr>
+  </tfoot>
+</table>
+
+{% if archives %}
+	<table class="ui celled table">
+  <thead>
+    <tr><th>Title</th>
+    <th>Start Time</th>
+    <th>End Time</th>
+    <th>Description</th>
+    <th>Status</th>
+  </tr></thead>
+  <tbody>
+  	{% for archive in archives %}
+  	<tr>
+      <td>{{archive.title}}</td>
+      <td>{{archive.start_time }}</td>
+      {% if archive.endtime %}
+      	<td>{{ archive.endtime }}</td>
+      {% else %}
+      	<td>-----</td>
+      {% endif %}
+      {% if archive.description %}
+      	<td>{{ archive.description }}</td>
+      {% else %}
+      	<td>-----</td>
+      {% endif %}
+      {% if achive.is_complete %}
+      	<td style="color: green;">Complete</td>
+      {% else %}
+      	<td style="color: red;">Incomplete</td>
+      {% endif %}
+    </tr>
+  	{% endfor %}
+    
+  </tbody>
+</table>
+{% endif %}
+
+</div>
+{% endblock %}

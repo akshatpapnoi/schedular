@@ -1,0 +1,7 @@
+.ui .inverted .menu{
+	border-radius: 0px !important;
+}
+
+.ui .message{
+	display: none;
+}
